@@ -111,7 +111,7 @@ CREATE TABLE notifications (
     notification_category VARCHAR(63) NOT NULL,
     notification_description VARCHAR(511) NOT NULL,
     notification_datetime DATETIME2 NOT NULL,
-    notification_seen SMALLINT NOT NULL,
+    notification_seen BIT NOT NULL,
 
     user_id INT NOT NULL,
 
