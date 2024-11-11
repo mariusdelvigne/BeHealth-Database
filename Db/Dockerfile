@@ -6,5 +6,5 @@ RUN ( /opt/mssql/bin/sqlservr --accept-eula & ) | grep -q "Service Broker manage
     && pkill sqlservr
 EXPOSE 1433
 
-# docker build -t="school/projet_ti_bd:1" .
+# docker build -t="school/projet_ti_bd:1" . 
 # docker run --name projetTiDbBeHealth -p 1433:1433 school/projet_ti_bd:1
