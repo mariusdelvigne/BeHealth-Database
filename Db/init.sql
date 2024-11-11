@@ -45,7 +45,7 @@ CREATE TABLE user_sleeps (
 GO
 CREATE TABLE user_periods (
     period_id INT NOT NULL IDENTITY,
-    period_begin_date DATETIME2 NOT NULL,
+    period_start_date DATETIME2 NOT NULL,
     period_end_date DATETIME2 NOT NULL,
     
     user_id INT NOT NULL,
