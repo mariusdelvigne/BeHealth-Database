@@ -107,6 +107,7 @@ CREATE TABLE user_passwords (
 GO
 CREATE TABLE notifications (
     notification_id INT NOT NULL IDENTITY,
+    notification_title VARCHAR(63) NOT NULL,
     notification_category VARCHAR(63) NOT NULL,
     notification_description VARCHAR(511) NOT NULL,
     notification_datetime DATETIME2 NOT NULL,
