@@ -314,39 +314,23 @@ ALTER TABLE health_programs
 ADD CONSTRAINT fk_health_programs_users_creator_id
 FOREIGN KEY (creator_id) REFERENCES users (user_id);
 GO
-CREATE TABLE ast_favorite_plans_users (
+CREATE TABLE ast_health_programs_users (
     ast_id INT NOT NULL IDENTITY,
+    relation_type VARCHAR(12) NOT NULL,
 
-    plan_id INT NOT NULL,
+    program_id INT NOT NULL,
     user_id INT NOT NULL,
 
     PRIMARY KEY (ast_id)
 );
 GO
-ALTER TABLE ast_favorite_plans_users
-ADD CONSTRAINT fk_ast_favorite_plans_users_users_user_id
+ALTER TABLE ast_health_programs_users
+ADD CONSTRAINT fk_ast_health_programs_users_users_user_id
 FOREIGN KEY (user_id) REFERENCES users (user_id);
 GO
-ALTER TABLE ast_favorite_plans_users
-ADD CONSTRAINT fk_ast_favorite_plans_users_plans_plan_id
-FOREIGN KEY (plan_id) REFERENCES plans (plan_id);
-GO
-CREATE TABLE ast_subscription_plans_users (
-    ast_id INT NOT NULL IDENTITY,
-
-    plan_id INT NOT NULL,
-    user_id INT NOT NULL,
-
-    PRIMARY KEY (ast_id)
-);
-GO
-ALTER TABLE ast_subscription_plans_users
-ADD CONSTRAINT fk_ast_subscription_plans_users_users_user_id
-FOREIGN KEY (user_id) REFERENCES users (user_id);
-GO
-ALTER TABLE ast_subscription_plans_users
-ADD CONSTRAINT fk_ast_subscription_plans_users_plans_plan_id
-FOREIGN KEY (plan_id) REFERENCES plans (plan_id);
+ALTER TABLE ast_health_programs_users
+ADD CONSTRAINT fk_ast_health_programs_users_health_programs_program_id
+FOREIGN KEY (program_id) REFERENCES health_programs (program_id);
 GO
 CREATE TABLE program_feedbacks (
     feedback_id INT NOT NULL IDENTITY,
