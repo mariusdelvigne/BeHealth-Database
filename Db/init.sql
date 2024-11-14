@@ -217,7 +217,7 @@ CREATE TABLE health_programs (
 GO
 CREATE TABLE ast_health_programs_users (
     ast_id INT NOT NULL IDENTITY,
-    relation_type VARCHAR(12) NOT NULL,
+    ast_relation_type VARCHAR(12) NOT NULL,
 
     program_id INT NOT NULL,
     user_id INT NOT NULL,
