@@ -314,7 +314,7 @@ ALTER TABLE health_programs
 ADD CONSTRAINT fk_health_programs_users_creator_id
 FOREIGN KEY (creator_id) REFERENCES users (user_id);
 GO
-CREATE TABLE ast_health_programs_users (
+CREATE TABLE ast_users_programs (
     ast_id INT NOT NULL IDENTITY,
     relation_type VARCHAR(12) NOT NULL,
 
@@ -324,12 +324,12 @@ CREATE TABLE ast_health_programs_users (
     PRIMARY KEY (ast_id)
 );
 GO
-ALTER TABLE ast_health_programs_users
-ADD CONSTRAINT fk_ast_health_programs_users_users_user_id
+ALTER TABLE ast_users_programs
+ADD CONSTRAINT fk_ast_users_programs_users_user_id
 FOREIGN KEY (user_id) REFERENCES users (user_id);
 GO
-ALTER TABLE ast_health_programs_users
-ADD CONSTRAINT fk_ast_health_programs_users_health_programs_program_id
+ALTER TABLE ast_users_programs
+ADD CONSTRAINT fk_ast_users_programs_health_programs_program_id
 FOREIGN KEY (program_id) REFERENCES health_programs (program_id);
 GO
 CREATE TABLE program_feedbacks (
