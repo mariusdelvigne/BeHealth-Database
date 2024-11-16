@@ -134,11 +134,11 @@ CREATE TABLE plans (
 );
 GO
 CREATE TABLE sleeps (
-    sleep_id INT NOT NULL IDENTITY,
+    plan_id INT NOT NULL,
     sleep_start_time TIME NOT NULL,
     sleep_duration_in_min INT NOT NULL,
 
-    PRIMARY KEY (sleep_id)
+    PRIMARY KEY (plan_id)
 );
 GO
 CREATE TABLE sports (
@@ -179,14 +179,6 @@ CREATE TABLE ast_plans_sports (
 
     plan_id INT NOT NULL,
     sport_id INT NOT NULL,
-
-    PRIMARY KEY (ast_id)
-);
-CREATE TABLE ast_plans_sleeps (
-    ast_id INT NOT NULL IDENTITY,
-
-    plan_id INT NOT NULL,
-    sleep_id INT NOT NULL,
 
     PRIMARY KEY (ast_id)
 );
@@ -298,6 +290,10 @@ ALTER TABLE plans
 ADD CONSTRAINT fk_plans_users_creator_id
 FOREIGN KEY (creator_id) REFERENCES users (user_id);
 GO
+ALTER TABLE sleeps
+ADD CONSTRAINT fk_sleeps_plans_plan_id
+FOREIGN KEY (plan_id) REFERENCES plans (plan_id);
+GO
 ALTER TABLE sports
 ADD CONSTRAINT fk_sports_users_creator_id
 FOREIGN KEY (creator_id) REFERENCES users (user_id);
@@ -312,14 +308,6 @@ FOREIGN KEY (food_id) REFERENCES foods (food_id);
 GO
 ALTER TABLE ast_plans_foods
 ADD CONSTRAINT fk_ast_plans_foods_plans_plan_id
-FOREIGN KEY (plan_id) REFERENCES plans (plan_id);
-GO
-ALTER TABLE ast_plans_sleeps
-ADD CONSTRAINT fk_ast_plans_sleeps_sleeps_sleep_id
-FOREIGN KEY (sleep_id) REFERENCES sleeps (sleep_id);
-GO
-ALTER TABLE ast_plans_sleeps
-ADD CONSTRAINT fk_ast_plans_sleeps_plans_plan_id
 FOREIGN KEY (plan_id) REFERENCES plans (plan_id);
 GO
 ALTER TABLE ast_plans_sports
