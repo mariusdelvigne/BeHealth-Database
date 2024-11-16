@@ -366,3 +366,10 @@ GO
 INSERT INTO users (user_role, User_mail, user_username, user_birth_date, user_gender, user_name, user_surname) VALUES (
     'Admin', 'test@mail.com', 'test', GETDATE(), 'Male', 'test', 'test'
 );
+GO
+DECLARE @HashedPassword VARBINARY(60);
+SET @HashedPassword = CONVERT(VARBINARY(60), '$2b$10$qmteKMrbxP0f98ViI5Ep6e2GCl1x3wgZap2Ii5yAu/MdlXmraF5Yi');
+INSERT INTO user_passwords (password_password, user_id) VALUES (
+    @HashedPassword, '1'
+)
+--mdp = adminPassword
