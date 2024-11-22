@@ -364,7 +364,7 @@ FOREIGN KEY (program_id) REFERENCES health_programs (program_id);
 ---------------------------------------------------------------------------
 GO
 INSERT INTO users (user_role, User_mail, user_username, user_birth_date, user_gender, user_name, user_surname) VALUES (
-    'Admin', 'test@mail.com', 'test', GETDATE(), 'Male', 'test', 'test'
+    'Admin', 'Warrior3000@mail.com', 'Warrior3000', GETDATE(), 'Male', 'Warrior', '3000'
 );
 GO
 DECLARE @HashedPassword VARBINARY(60);
