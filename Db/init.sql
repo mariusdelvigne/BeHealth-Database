@@ -373,7 +373,7 @@ DECLARE @HashedPassword VARBINARY(60);
 SET @HashedPassword = CONVERT(VARBINARY(60), '$2b$10$qmteKMrbxP0f98ViI5Ep6e2GCl1x3wgZap2Ii5yAu/MdlXmraF5Yi');
 INSERT INTO user_passwords (password_password, user_id) VALUES (
     @HashedPassword, '1'
-)
+);
 --mdp = adminPassword
 GO
 INSERT INTO users (user_role, User_mail, user_username, user_birth_date, user_gender, user_name, user_surname) VALUES (
@@ -384,7 +384,7 @@ DECLARE @HashedPassword VARBINARY(60);
 SET @HashedPassword = CONVERT(VARBINARY(60), '$2b$12$TCBkjqei0seeBdmWMNHahuYPepWQ67.p5vL0qNOcKNMSP715mmGXa');
 INSERT INTO user_passwords (password_password, user_id) VALUES (
     @HashedPassword, '2'
-)
+);
 --mdp = MariusDelvigne
 GO
 INSERT INTO users (user_role, User_mail, user_username, user_birth_date, user_gender, user_name, user_surname) VALUES (
@@ -395,7 +395,7 @@ DECLARE @HashedPassword VARBINARY(60);
 SET @HashedPassword = CONVERT(VARBINARY(60), '$2b$12$4YCqbKhd8oLr8Iro/BHeEOSncQUf7mRJvAcCKSEx2/HdEiDoOF8RK');
 INSERT INTO user_passwords (password_password, user_id) VALUES (
     @HashedPassword, '3'
-)
+);
 --mdp = MatteoLeroy
 GO
 INSERT INTO users (user_role, User_mail, user_username, user_birth_date, user_gender, user_name, user_surname) VALUES (
@@ -406,7 +406,7 @@ DECLARE @HashedPassword VARBINARY(60);
 SET @HashedPassword = CONVERT(VARBINARY(60), '$2b$12$OXTa.6Kdp3Elr0s18kpw.OkDmcp6gblEfz.4CFC8/qsYvBvkQRoIy');
 INSERT INTO user_passwords (password_password, user_id) VALUES (
     @HashedPassword, '4'
-)
+);
 --mdp = NathanMalbecq
 GO
 INSERT INTO users (user_role, User_mail, user_username, user_birth_date, user_gender, user_name, user_surname) VALUES (
@@ -417,7 +417,7 @@ DECLARE @HashedPassword VARBINARY(60);
 SET @HashedPassword = CONVERT(VARBINARY(60), '$2b$12$Rvzs2RZ5ZGhdSZblblk1jOI5RQIOCWT958TE03i94yMR3oNlLegDa');
 INSERT INTO user_passwords (password_password, user_id) VALUES (
     @HashedPassword, '5'
-)
+);
 --mdp = RobinReynaert
 
 -- INSERTION GLOBAL_MESSAGES
@@ -623,7 +623,7 @@ INSERT INTO ast_health_programs_users (ast_relation_type, program_id, user_id) V
 ('subscription', 5, 1),
 ('subscription', 4, 3),
 ('subscription', 2, 4),
-('favorite', 2, 5),
+('favorite', 2, 5);
 
 -- INSERTION PROGRAM_FEEDBACKS
 GO
