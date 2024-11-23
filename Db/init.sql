@@ -362,6 +362,8 @@ ALTER TABLE program_feedbacks
 ADD CONSTRAINT fk_program_feedbacks_health_programs_program_id
 FOREIGN KEY (program_id) REFERENCES health_programs (program_id);
 ---------------------------------------------------------------------------
+
+-- INSERTIONS D'UTILISATEURS
 GO
 INSERT INTO users (user_role, User_mail, user_username, user_birth_date, user_gender, user_name, user_surname) VALUES (
     'Admin', 'Warrior3000@mail.com', 'Warrior3000', GETDATE(), 'Male', 'Warrior', '3000'
@@ -373,3 +375,261 @@ INSERT INTO user_passwords (password_password, user_id) VALUES (
     @HashedPassword, '1'
 )
 --mdp = adminPassword
+GO
+INSERT INTO users (user_role, User_mail, user_username, user_birth_date, user_gender, user_name, user_surname) VALUES (
+    'Admin', 'Marius@mail.com', 'Marius', GETDATE(), 'Male', 'Marius', 'Delvigne'
+);
+GO
+DECLARE @HashedPassword VARBINARY(60);
+SET @HashedPassword = CONVERT(VARBINARY(60), '$2b$12$TCBkjqei0seeBdmWMNHahuYPepWQ67.p5vL0qNOcKNMSP715mmGXa');
+INSERT INTO user_passwords (password_password, user_id) VALUES (
+    @HashedPassword, '2'
+)
+--mdp = MariusDelvigne
+GO
+INSERT INTO users (user_role, User_mail, user_username, user_birth_date, user_gender, user_name, user_surname) VALUES (
+    'User', 'Matteo@mail.com', 'Matteo', GETDATE(), 'Female', 'Matteo', 'Leroy'
+);
+GO
+DECLARE @HashedPassword VARBINARY(60);
+SET @HashedPassword = CONVERT(VARBINARY(60), '$2b$12$4YCqbKhd8oLr8Iro/BHeEOSncQUf7mRJvAcCKSEx2/HdEiDoOF8RK');
+INSERT INTO user_passwords (password_password, user_id) VALUES (
+    @HashedPassword, '3'
+)
+--mdp = MatteoLeroy
+GO
+INSERT INTO users (user_role, User_mail, user_username, user_birth_date, user_gender, user_name, user_surname) VALUES (
+    'User', 'Nathan@mail.com', 'Nathan', GETDATE(), 'Female', 'Nathan', 'Malbecq'
+);
+GO
+DECLARE @HashedPassword VARBINARY(60);
+SET @HashedPassword = CONVERT(VARBINARY(60), '$2b$12$OXTa.6Kdp3Elr0s18kpw.OkDmcp6gblEfz.4CFC8/qsYvBvkQRoIy');
+INSERT INTO user_passwords (password_password, user_id) VALUES (
+    @HashedPassword, '4'
+)
+--mdp = NathanMalbecq
+GO
+INSERT INTO users (user_role, User_mail, user_username, user_birth_date, user_gender, user_name, user_surname) VALUES (
+    'User', 'Robin@mail.com', 'Robin', GETDATE(), 'Other', 'Robin', 'Reynaert'
+);
+GO
+DECLARE @HashedPassword VARBINARY(60);
+SET @HashedPassword = CONVERT(VARBINARY(60), '$2b$12$Rvzs2RZ5ZGhdSZblblk1jOI5RQIOCWT958TE03i94yMR3oNlLegDa');
+INSERT INTO user_passwords (password_password, user_id) VALUES (
+    @HashedPassword, '5'
+)
+--mdp = RobinReynaert
+
+-- INSERTION GLOBAL_MESSAGES
+GO
+INSERT INTO global_messages (message_description, message_start_datetime, message_end_datetime, creator_id) VALUES
+('Test GlobalMessage Warrior3000', '2024-11-23 10:00:00', '2024-11-24 23:59:59', 1),
+('Maintenance scheduled for Saturday, November 30, 2024.', '2024-11-25 08:00:00', '2024-11-30 18:00:00', 2);
+
+-- INSERTION NOTIFICATIONS
+GO
+INSERT INTO notifications (notification_title, notification_category, notification_description, notification_datetime, notification_seen, user_id) VALUES
+('New update', 'General', 'A new update is available now.', '2024-11-23 09:00:00', 0, 1),
+('meeting reminder', 'General', 'Don''t forget the project meeting at 3:00 p.m.', '2024-11-23 08:00:00', 0, 2),
+('scheduled maintenance', 'General', 'Maintenance scheduled on November 30, 2024 from 02:00 p.m. to 04:00 p.m.', '2024-11-22 12:00:00', 0, 1);
+
+-- INSERTION USER_SLEEPS
+GO 
+INSERT INTO user_sleeps (sleep_start_datetime, sleep_end_datetime, user_id) VALUES
+('2024-11-22 22:30:00', '2024-11-23 06:30:00', 1),
+('2024-11-21 23:00:00', '2024-11-22 07:00:00', 2),
+('2024-11-20 21:45:00', '2024-11-21 05:45:00', 3),
+('2024-11-19 00:15:00', '2024-11-19 08:15:00', 4),
+('2024-11-18 22:00:00', '2024-11-19 06:00:00', 5);
+
+-- INSERTION USER_PERIODS
+GO
+INSERT INTO user_periods (period_start_date, period_end_date, user_id) VALUES
+('2024-11-15 08:00:00', '2024-11-22 16:00:00', 3),
+('2024-11-16 09:00:00', '2024-11-21 17:00:00', 4);
+
+-- INSERTION USER_WEIGHTS
+GO
+INSERT INTO user_weights (weight_in_g, weight_date, user_id) VALUES
+(70000, '2024-01-01 08:00:00', 1),
+(70500, '2024-02-01 08:00:00', 1),
+(71000, '2024-03-01 08:00:00', 1),
+
+(82000, '2024-01-05 08:00:00', 2),
+(82500, '2024-02-05 08:00:00', 2),
+(83000, '2024-03-05 08:00:00', 2),
+
+(64000, '2024-01-10 08:00:00', 3),
+(67500, '2024-02-13 08:00:00', 3),
+(65000, '2024-03-09 08:00:00', 3),
+
+(75000, '2024-01-15 08:00:00', 4),
+(71500, '2024-10-15 08:00:00', 4),
+(68000, '2024-12-30 08:00:00', 4),
+
+(68000, '2024-01-10 08:00:00', 5),
+(64500, '2024-05-22 08:00:00', 5),
+(73000, '2024-10-04 08:00:00', 5);
+
+-- INSERTION USER_HEIGHTS
+GO
+INSERT INTO user_heights (height_in_cm, height_date, user_id) VALUES
+(175, '2024-01-01 08:00:00', 1),
+(176, '2024-02-01 08:00:00', 1),
+(177, '2024-03-01 08:00:00', 1),
+
+(182, '2024-01-05 08:00:00', 2),
+(181, '2024-02-05 08:00:00', 2),
+(180, '2024-03-05 08:00:00', 2),
+
+(160, '2024-01-10 08:00:00', 3),
+(165, '2024-02-20 08:00:00', 3),
+(171, '2024-04-09 08:00:00', 3),
+
+(201, '2024-01-04 08:00:00', 4),
+(201, '2024-03-15 08:00:00', 4),
+(201, '2024-05-10 08:00:00', 4),
+
+(165, '2024-01-15 08:00:00', 5),
+(169, '2024-10-24 08:00:00', 5),
+(167, '2024-12-21 08:00:00', 5);
+
+-- INSERTION SPORTS
+GO
+INSERT INTO sports (sport_name, creator_id) VALUES
+('Football', 1),
+('Basketball', 2),
+('Tennis', 3),
+('Swimming', 4),
+('Athletics', 5),
+('Cycling', 1),
+('Handball', 2),
+('Rugby', 3),
+('Boxing', 4),
+('Fencing', 5);
+
+-- INSERTION FOODS
+GO
+INSERT INTO foods (food_name, creator_id) VALUES
+('Apple', 1),
+('Banana', 2),
+('Orange', 3),
+('Strawberry', 4),
+('White rice', 5),
+('Whole wheat bread', 1),
+('Mozzarella cheese', 2),
+('Tuna', 3),
+('Beef steak', 4),
+('Potato', 5);
+
+-- INSERTION AST_USERS_FOODS
+GO
+INSERT INTO ast_users_foods (ast_quantity_in_g, ast_datetime, user_id, food_id) VALUES
+(150, '2024-11-01 12:00:00', 1, 2),
+(200, '2024-11-02 18:30:00', 2, 4),
+(100, '2024-11-03 07:45:00', 3, 7),
+(250, '2024-11-04 14:15:00', 4, 9),
+(180, '2024-11-05 20:00:00', 5, 5);
+
+-- INSERTION AST_USERS_SPORTS
+GO
+INSERT INTO ast_users_sports (ast_start_datetime, ast_end_datetime, user_id, sport_id) VALUES
+('2024-11-01 12:00:00', '2024-11-01 13:00:00', 1, 1),
+('2024-11-02 18:30:00', '2024-11-02 20:00:00', 2, 4),
+('2024-11-03 07:45:00', '2024-11-03 09:00:00', 3, 3),
+('2024-11-04 14:15:00', '2024-11-04 16:00:00', 4, 6),
+('2024-11-05 20:00:00', '2024-11-05 21:30:00', 5, 5);
+
+-- INSERTION TAGS
+GO
+INSERT INTO tags (tag_name, tag_category, creator_id) VALUES
+('Healthy', 'Food', 1),
+('Sporty', 'Sport', 2),
+('Vegan', 'Food', 3),
+('Cardio', 'Sport', 4),
+('Protein', 'Food', 5),
+('Strength', 'Sport', 1),
+('Vegetarian', 'Food', 2),
+('Endurance', 'Sport', 3),
+('Gluten-free', 'Food', 4),
+('Flexibility', 'Sport', 5);
+
+-- INSERTION PLANS
+GO
+INSERT INTO plans (plan_name, plan_category, plan_privacy, plan_creation_datetime, plan_description, plan_duration_in_days, creator_id) VALUES
+('Morning Jog Routine', 'sport', 'public', '2024-11-23 08:00:00', 'A daily morning jog routine to boost energy levels and fitness.', 30, 1),
+('Balanced Diet Plan', 'food', 'private', '2024-11-23 09:00:00', 'A comprehensive diet plan focusing on balanced nutrition and healthy eating habits.', 60, 2),
+('Weekly Yoga Sessions', 'sport', 'public', '2024-11-23 10:00:00', 'A weekly yoga plan to enhance flexibility, strength, and mindfulness.', 45, 3),
+('Healthy Meal Prep', 'food', 'private', '2024-11-23 11:00:00', 'A meal preparation plan to ensure healthy eating throughout the week.', 7, 4),
+('Sleep Improvement Program', 'sleep', 'public', '2024-11-23 12:00:00', 'A program designed to improve sleep quality with tips and routines.', 21, 5),
+('Post-Workout Nutrition', 'food', 'private', '2024-11-23 13:00:00', 'Nutrition tips and meal plans for optimal recovery after workouts.', 30, 1);
+
+-- INSERTION AST_PLANS_FOODS
+GO
+INSERT INTO ast_plans_foods (ast_day_number, ast_day_time, ast_quantity_in_g, plan_id, food_id) VALUES
+(1, '08:00:00', 200, 1, 2),
+(2, '12:00:00', 150, 2, 4),
+(3, '18:00:00', 100, 3, 7),
+(4, '09:00:00', 250, 4, 9),
+(5, '20:00:00', 180, 5, 5),
+(6, '07:00:00', 300, 6, 1);
+
+-- INSERTION AST_PLANS_SPORTS
+GO
+INSERT INTO ast_plans_sports (ast_day_number, ast_day_time, ast_duration_in_min, plan_id, sport_id) VALUES
+(1, '06:00:00', 30, 1, 3),
+(2, '07:30:00', 45, 2, 1),
+(3, '17:00:00', 60, 3, 8),
+(4, '19:00:00', 50, 4, 10),
+(5, '05:00:00', 40, 5, 5),
+(6, '08:00:00', 90, 6, 2);
+
+-- INSERTION AST_PLANS_TAGS
+GO
+INSERT INTO ast_plans_tags (tag_id, plan_id) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6);
+
+-- INSERTION SLEEPS
+GO
+INSERT INTO sleeps (plan_id, sleep_start_time, sleep_duration_in_min) VALUES
+(1, '22:00:00', 480),
+(2, '23:00:00', 450),
+(3, '21:30:00', 500),
+(4, '22:30:00', 470),
+(5, '20:45:00', 490),
+(6, '23:15:00', 450);
+
+-- INSERTION HEALTH_PROGRAMS
+GO
+INSERT INTO health_programs (program_title, program_privacy, program_creation_datetime, program_description, creator_id, sleep_plan_id, food_plan_id, sport_plan_id) VALUES
+('Ultimate Wellness Plan', 'public', '2024-11-23 09:00:00', 'A comprehensive wellness program incorporating balanced diet, regular exercise, and improved sleep habits.', 1, 5, 2, 3),
+('Balanced Life Program', 'private', '2024-11-23 10:00:00', 'A program focused on balancing nutrition, physical activity, and sleep for overall health.', 2, NULL, 4, NULL),
+('Fitness and Nutrition Plan', 'public', '2024-11-23 11:00:00', 'A plan combining nutritious meal preparation with effective fitness routines.', 3, NULL, 6, 1),
+('Healthy Lifestyle Program', 'private', '2024-11-23 12:00:00', 'An integrative health program for promoting a healthy lifestyle through diet, exercise, and rest.', 4, 5, NULL, NULL),
+('Sleep and Fitness Routine', 'public', '2024-11-23 13:00:00', 'A dedicated routine to enhance sleep quality and maintain physical fitness.', 5, 5, NULL, 3);
+
+-- INSERTION AST_HEALTH_PROGRAMS_USERS
+GO
+INSERT INTO ast_health_programs_users (ast_relation_type, program_id, user_id) VALUES
+('favorite', 1, 2),
+('favorite', 1, 3),
+('subscription', 3, 4),
+('favorite', 3, 5),
+('subscription', 5, 1),
+('subscription', 4, 3),
+('subscription', 2, 4),
+('favorite', 2, 5),
+
+-- INSERTION PROGRAM_FEEDBACKS
+GO
+INSERT INTO program_feedbacks (feedback_rating, feedback_description, feedback_creation_datetime, creator_id, program_id) VALUES
+(5, 'This program has been life-changing for me. I feel healthier and more energized than ever before.', '2024-11-23 09:00:00', 2, 1),
+(4, 'I have seen great results with this program. It has helped me stay on track with my fitness goals.', '2024-11-23 10:00:00', 3, 2),
+(3, 'The nutrition plan was good, but I struggled with the exercise routines. Overall, a decent program.', '2024-11-23 11:00:00', 4, 3),
+(2, 'I found the lifestyle program to be too restrictive. It didn''t suit my preferences and lifestyle.', '2024-11-23 12:00:00', 5, 4),
+(1, 'The sleep routine was too challenging for me. I couldn''t stick to the schedule and felt exhausted.', '2024-11-23 13:00:00', 1, 5);
