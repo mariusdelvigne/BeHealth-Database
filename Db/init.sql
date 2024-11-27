@@ -292,7 +292,8 @@ FOREIGN KEY (creator_id) REFERENCES users (user_id);
 GO
 ALTER TABLE sleeps
 ADD CONSTRAINT fk_sleeps_plans_plan_id
-FOREIGN KEY (plan_id) REFERENCES plans (plan_id);
+FOREIGN KEY (plan_id) REFERENCES plans (plan_id)
+ON DELETE CASCADE;
 GO
 ALTER TABLE sports
 ADD CONSTRAINT fk_sports_users_creator_id
