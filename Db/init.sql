@@ -352,7 +352,8 @@ FOREIGN KEY (user_id) REFERENCES users (user_id);
 GO
 ALTER TABLE ast_health_programs_users
 ADD CONSTRAINT fk_ast_health_programs_users_health_programs_program_id
-FOREIGN KEY (program_id) REFERENCES health_programs (program_id);
+FOREIGN KEY (program_id) REFERENCES health_programs (program_id)
+ON DELETE CASCADE;
 GO
 ALTER TABLE program_feedbacks
 ADD CONSTRAINT fk_program_feedbacks_users_creator_id
