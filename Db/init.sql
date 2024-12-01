@@ -12,6 +12,7 @@ CREATE TABLE users (
     user_gender VARCHAR(63) NOT NULL,
     user_name VARCHAR(127) NOT NULL,
     user_surname VARCHAR(127) NOT NULL,
+    user_banned BIT NOT NULL DEFAULT 0,
 
     PRIMARY KEY (user_id)
 );
