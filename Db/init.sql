@@ -39,7 +39,7 @@ CREATE TABLE global_messages (
     message_start_datetime DATETIME2 NOT NULL,
     message_end_datetime DATETIME2 NOT NULL,
     
-    creator_id INT NOT NULL,
+    creator_id INT,
 
     PRIMARY KEY (message_id)
 );
@@ -129,7 +129,7 @@ CREATE TABLE plans (
     plan_description VARCHAR(2047),
     plan_duration_in_days INT NOT NULL,
 
-    creator_id INT NOT NULL,
+    creator_id INT,
 
     PRIMARY KEY (plan_id)
 );
@@ -146,7 +146,7 @@ CREATE TABLE sports (
     sport_id INT NOT NULL IDENTITY,
     sport_name VARCHAR(127) NOT NULL UNIQUE,
 
-    creator_id INT NOT NULL,
+    creator_id INT,
 
     PRIMARY KEY (sport_id)
 );
@@ -154,6 +154,7 @@ GO
 CREATE TABLE foods (
     food_id INT NOT NULL IDENTITY,
     food_name VARCHAR(127) NOT NULL UNIQUE,
+
     food_serving_weights INT NOT NULL,
     food_calories FLOAT NOT NULL,
     food_total_fats FLOAT NOT NULL,
@@ -165,8 +166,8 @@ CREATE TABLE foods (
     food_sugars FLOAT NOT NULL,
     food_proteins FLOAT NOT NULL,
     food_potassiums FLOAT NOT NULL,
-
-    creator_id INT NOT NULL,
+    
+    creator_id INT,
 
     PRIMARY KEY (food_id)
 );
@@ -200,7 +201,7 @@ CREATE TABLE tags (
     tag_name VARCHAR(63) NOT NULL,
     tag_category VARCHAR(5) NOT NULL,
 
-    creator_id INT NOT NULL,
+    creator_id INT,
 
     PRIMARY KEY (tag_id)
 );
@@ -219,7 +220,7 @@ CREATE TABLE health_programs (
     program_creation_datetime DATETIME2 NOT NULL,
     program_description VARCHAR(2047) NOT NULL,
 
-    creator_id INT NOT NULL,
+    creator_id INT,
     sleep_plan_id INT,
     food_plan_id INT,
     sport_plan_id INT,
@@ -252,129 +253,188 @@ CREATE TABLE program_feedbacks (
 GO
 ALTER TABLE user_preferences
 ADD CONSTRAINT fk_user_preferences_users_user_id
-FOREIGN KEY (user_id) REFERENCES users (user_id);
+FOREIGN KEY (user_id) REFERENCES users (user_id)
+ON DELETE CASCADE
+
 GO
 ALTER TABLE user_passwords
 ADD CONSTRAINT fk_user_passwords_users_user_id
-FOREIGN KEY (user_id) REFERENCES users (user_id);
+FOREIGN KEY (user_id) REFERENCES users (user_id)
+ON DELETE CASCADE
+
 GO
 ALTER TABLE global_messages
 ADD CONSTRAINT fk_global_messages_users_creator_id
-FOREIGN KEY (creator_id) REFERENCES users (user_id);
+FOREIGN KEY (creator_id) REFERENCES users (user_id)
+ON DELETE SET NULL;
 GO
 ALTER TABLE notifications
 ADD CONSTRAINT fk_notifications_users_user_id
-FOREIGN KEY (user_id) REFERENCES users (user_id);
+FOREIGN KEY (user_id) REFERENCES users (user_id)
+ON DELETE CASCADE
+
 GO
 ALTER TABLE user_sleeps
 ADD CONSTRAINT fk_user_sleeps_users_user_id
-FOREIGN KEY (user_id) REFERENCES users (user_id);
+FOREIGN KEY (user_id) REFERENCES users (user_id)
+ON DELETE CASCADE
+
 GO
 ALTER TABLE user_periods
 ADD CONSTRAINT fk_user_periods_users_user_id
-FOREIGN KEY (user_id) REFERENCES users (user_id);
+FOREIGN KEY (user_id) REFERENCES users (user_id)
+ON DELETE CASCADE
+
 GO
 ALTER TABLE ast_users_foods
 ADD CONSTRAINT fk_ast_users_foods_users_user_id
-FOREIGN KEY (user_id) REFERENCES users (user_id);
+FOREIGN KEY (user_id) REFERENCES users (user_id)
+ON DELETE CASCADE
+
 GO
 ALTER TABLE ast_users_foods
 ADD CONSTRAINT fk_ast_users_foods_foods_food_id
-FOREIGN KEY (food_id) REFERENCES foods (food_id);
+FOREIGN KEY (food_id) REFERENCES foods (food_id)
+ON DELETE CASCADE
+
 GO
 ALTER TABLE ast_users_sports
 ADD CONSTRAINT fk_ast_users_sports_users_user_id
-FOREIGN KEY (user_id) REFERENCES users (user_id);
+FOREIGN KEY (user_id) REFERENCES users (user_id)
+ON DELETE CASCADE
+
 GO
 ALTER TABLE ast_users_sports
 ADD CONSTRAINT fk_ast_users_sports_sports_sport_id
-FOREIGN KEY (sport_id) REFERENCES sports (sport_id);
+FOREIGN KEY (sport_id) REFERENCES sports (sport_id)
+ON DELETE CASCADE
+
 GO
 ALTER TABLE user_weights
 ADD CONSTRAINT fk_user_weights_users_user_id
-FOREIGN KEY (user_id) REFERENCES users (user_id);
+FOREIGN KEY (user_id) REFERENCES users (user_id)
+ON DELETE CASCADE
+
 GO
 ALTER TABLE user_heights
 ADD CONSTRAINT fk_user_heights_users_user_id
-FOREIGN KEY (user_id) REFERENCES users (user_id);
+FOREIGN KEY (user_id) REFERENCES users (user_id)
+ON DELETE CASCADE
+
 GO
 ALTER TABLE plans
 ADD CONSTRAINT fk_plans_users_creator_id
-FOREIGN KEY (creator_id) REFERENCES users (user_id);
+FOREIGN KEY (creator_id) REFERENCES users (user_id)
+ON DELETE SET NULL
+
 GO
 ALTER TABLE sleeps
 ADD CONSTRAINT fk_sleeps_plans_plan_id
 FOREIGN KEY (plan_id) REFERENCES plans (plan_id)
-ON DELETE CASCADE;
+ON DELETE CASCADE
+
 GO
 ALTER TABLE sports
 ADD CONSTRAINT fk_sports_users_creator_id
-FOREIGN KEY (creator_id) REFERENCES users (user_id);
+FOREIGN KEY (creator_id) REFERENCES users (user_id)
+ON DELETE SET NULL
+
 GO
 ALTER TABLE foods
 ADD CONSTRAINT fk_foods_users_creator_id
-FOREIGN KEY (creator_id) REFERENCES users (user_id);
+FOREIGN KEY (creator_id) REFERENCES users (user_id)
+ON DELETE SET NULL
+
 GO
 ALTER TABLE ast_plans_foods
 ADD CONSTRAINT fk_ast_plans_foods_foods_food_id
-FOREIGN KEY (food_id) REFERENCES foods (food_id);
+FOREIGN KEY (food_id) REFERENCES foods (food_id)
+ON DELETE CASCADE
+
 GO
 ALTER TABLE ast_plans_foods
 ADD CONSTRAINT fk_ast_plans_foods_plans_plan_id
-FOREIGN KEY (plan_id) REFERENCES plans (plan_id);
+FOREIGN KEY (plan_id) REFERENCES plans (plan_id)
+ON DELETE CASCADE
+
 GO
 ALTER TABLE ast_plans_sports
 ADD CONSTRAINT fk_ast_plans_sports_sports_sport_id
-FOREIGN KEY (sport_id) REFERENCES sports (sport_id);
+FOREIGN KEY (sport_id) REFERENCES sports (sport_id)
+ON DELETE CASCADE
+
 GO
 ALTER TABLE ast_plans_sports
 ADD CONSTRAINT fk_ast_plans_sports_plans_plan_id
-FOREIGN KEY (plan_id) REFERENCES plans (plan_id);
+FOREIGN KEY (plan_id) REFERENCES plans (plan_id)
+ON DELETE CASCADE
+
 GO
 ALTER TABLE tags
 ADD CONSTRAINT fk_tags_users_creator_id
-FOREIGN KEY (creator_id) REFERENCES users (user_id);
+FOREIGN KEY (creator_id) REFERENCES users (user_id)
+ON DELETE SET NULL
+
 GO
 ALTER TABLE ast_plans_tags
 ADD CONSTRAINT fk_ast_plans_tags_plans_plan_id
-FOREIGN KEY (plan_id) REFERENCES plans (plan_id);
+FOREIGN KEY (plan_id) REFERENCES plans (plan_id)
+ON DELETE CASCADE
+
 GO
 ALTER TABLE ast_plans_tags
 ADD CONSTRAINT fk_ast_plans_tags_tags_tag_id
-FOREIGN KEY (tag_id) REFERENCES tags (tag_id);
+FOREIGN KEY (tag_id) REFERENCES tags (tag_id)
+ON DELETE CASCADE
+
 GO
 ALTER TABLE health_programs
 ADD CONSTRAINT fk_health_programs_plans_sleep_plan_id
-FOREIGN KEY (sleep_plan_id) REFERENCES plans (plan_id);
+FOREIGN KEY (sleep_plan_id) REFERENCES plans (plan_id)
+ON DELETE SET NULL
+
 GO
 ALTER TABLE health_programs
 ADD CONSTRAINT fk_health_programs_plans_food_plan_id
-FOREIGN KEY (food_plan_id) REFERENCES plans (plan_id);
+FOREIGN KEY (food_plan_id) REFERENCES plans (plan_id)
+ON DELETE SET NULL
+
 GO
 ALTER TABLE health_programs
 ADD CONSTRAINT fk_health_programs_plans_sport_plan_id
-FOREIGN KEY (sport_plan_id) REFERENCES plans (plan_id);
+FOREIGN KEY (sport_plan_id) REFERENCES plans (plan_id)
+ON DELETE SET NULL
+
 GO
 ALTER TABLE health_programs
 ADD CONSTRAINT fk_health_programs_users_creator_id
-FOREIGN KEY (creator_id) REFERENCES users (user_id);
+FOREIGN KEY (creator_id) REFERENCES users (user_id)
+ON DELETE SET NULL
+
 GO
 ALTER TABLE ast_health_programs_users
 ADD CONSTRAINT fk_ast_health_programs_users_users_user_id
-FOREIGN KEY (user_id) REFERENCES users (user_id);
+FOREIGN KEY (user_id) REFERENCES users (user_id)
+ON DELETE CASCADE
+
 GO
 ALTER TABLE ast_health_programs_users
 ADD CONSTRAINT fk_ast_health_programs_users_health_programs_program_id
 FOREIGN KEY (program_id) REFERENCES health_programs (program_id)
-ON DELETE CASCADE;
+ON DELETE CASCADE
+
 GO
 ALTER TABLE program_feedbacks
 ADD CONSTRAINT fk_program_feedbacks_users_creator_id
-FOREIGN KEY (creator_id) REFERENCES users (user_id);
+FOREIGN KEY (creator_id) REFERENCES users (user_id)
+ON DELETE CASCADE
+
 GO
 ALTER TABLE program_feedbacks
 ADD CONSTRAINT fk_program_feedbacks_health_programs_program_id
-FOREIGN KEY (program_id) REFERENCES health_programs (program_id);
+FOREIGN KEY (program_id) REFERENCES health_programs (program_id)
+ON DELETE CASCADE
+
 ---------------------------------------------------------------------------
 
 -- INSERTIONS D'UTILISATEURS
@@ -535,7 +595,6 @@ INSERT INTO foods (food_name, food_serving_weights, food_calories, food_total_fa
 ('Tuna', 154, 179, 1.0, 0.3, 50, 42, 0, 0.0, 0.0, 39.3, 435, 3),
 ('Beef steak', 85, 213, 13.0, 5.2, 63, 53, 0, 0.0, 0.0, 20.5, 315, 4),
 ('Potato', 213, 164, 0.2, 0.0, 0, 24, 37, 4.7, 1.7, 4.3, 897, 5);
-
 
 -- INSERTION AST_USERS_FOODS
 GO
