@@ -154,6 +154,17 @@ GO
 CREATE TABLE foods (
     food_id INT NOT NULL IDENTITY,
     food_name VARCHAR(127) NOT NULL UNIQUE,
+    food_serving_weights INT NOT NULL,
+    food_calories FLOAT NOT NULL,
+    food_total_fats FLOAT NOT NULL,
+    food_satured_fats FLOAT NOT NULL,
+    food_cholesterol FLOAT NOT NULL,
+    food_sodium FLOAT NOT NULL,
+    food_total_carbohydrates FLOAT NOT NULL,
+    food_dietary_fiber FLOAT NOT NULL,
+    food_sugars FLOAT NOT NULL,
+    food_proteins FLOAT NOT NULL,
+    food_potassiums FLOAT NOT NULL,
 
     creator_id INT NOT NULL,
 
@@ -513,17 +524,18 @@ INSERT INTO sports (sport_name, creator_id) VALUES
 
 -- INSERTION FOODS
 GO
-INSERT INTO foods (food_name, creator_id) VALUES
-('Apple', 1),
-('Banana', 2),
-('Orange', 3),
-('Strawberry', 4),
-('White rice', 5),
-('Whole wheat bread', 1),
-('Mozzarella cheese', 2),
-('Tuna', 3),
-('Beef steak', 4),
-('Potato', 5);
+INSERT INTO foods (food_name, food_serving_weights, food_calories, food_total_fats, food_satured_fats, food_cholesterol, food_sodium, food_total_carbohydrates, food_dietary_fiber, food_sugars, food_proteins, food_potassiums, creator_id) VALUES
+('Apple', 182, 95, 0.3, 0.1, 0, 2, 25, 4.4, 19, 0.5, 195, 1),
+('Banana', 118, 105, 0.3, 0.1, 0, 1, 27, 3.1, 14, 1.3, 422, 2),
+('Orange', 131, 62, 0.2, 0.0, 0, 0, 15, 3.1, 12, 1.2, 237, 3),
+('Strawberry', 152, 49, 0.5, 0.0, 0, 1, 12, 3.0, 7, 1.0, 220, 4),
+('White rice', 158, 205, 0.4, 0.1, 0, 1, 45, 0.6, 0.1, 4.3, 55, 5),
+('Whole wheat bread', 28, 69, 1.1, 0.2, 0, 134, 12, 2.0, 2.0, 3.6, 74, 1),
+('Mozzarella cheese', 28, 85, 6.3, 3.7, 22, 138, 1, 0.0, 0.0, 6.3, 7, 2),
+('Tuna', 154, 179, 1.0, 0.3, 50, 42, 0, 0.0, 0.0, 39.3, 435, 3),
+('Beef steak', 85, 213, 13.0, 5.2, 63, 53, 0, 0.0, 0.0, 20.5, 315, 4),
+('Potato', 213, 164, 0.2, 0.0, 0, 24, 37, 4.7, 1.7, 4.3, 897, 5);
+
 
 -- INSERTION AST_USERS_FOODS
 GO
