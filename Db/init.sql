@@ -391,19 +391,16 @@ GO
 ALTER TABLE health_programs
 ADD CONSTRAINT fk_health_programs_plans_sleep_plan_id
 FOREIGN KEY (sleep_plan_id) REFERENCES plans (plan_id)
-ON DELETE SET NULL
 
 GO
 ALTER TABLE health_programs
 ADD CONSTRAINT fk_health_programs_plans_food_plan_id
 FOREIGN KEY (food_plan_id) REFERENCES plans (plan_id)
-ON DELETE SET NULL
 
 GO
 ALTER TABLE health_programs
 ADD CONSTRAINT fk_health_programs_plans_sport_plan_id
 FOREIGN KEY (sport_plan_id) REFERENCES plans (plan_id)
-ON DELETE SET NULL
 
 GO
 ALTER TABLE health_programs
@@ -434,14 +431,39 @@ ALTER TABLE program_feedbacks
 ADD CONSTRAINT fk_program_feedbacks_health_programs_program_id
 FOREIGN KEY (program_id) REFERENCES health_programs (program_id)
 ON DELETE CASCADE
+GO
+-- MANAGE PLAN DELETIONS
+CREATE TRIGGER trg_plans_delete
+ON plans
+INSTEAD OF DELETE
+AS
+BEGIN
+    
+    UPDATE health_programs
+    SET food_plan_id = NULL
+    WHERE food_plan_id IN (SELECT plan_id FROM DELETED);
+
+    UPDATE health_programs
+    SET sport_plan_id = NULL
+    WHERE sport_plan_id IN (SELECT plan_id FROM DELETED);
+
+    UPDATE health_programs
+    SET sleep_plan_id = NULL
+    WHERE sleep_plan_id IN (SELECT plan_id FROM DELETED);
+
+    DELETE FROM plans
+    WHERE plan_id IN (SELECT plan_id FROM DELETED);
+END;
 
 ---------------------------------------------------------------------------
 
 -- INSERTIONS D'UTILISATEURS
+
 GO
 INSERT INTO users (user_role, User_mail, user_username, user_birth_date, user_gender, user_name, user_surname) VALUES (
     'Admin', 'Warrior3000@mail.com', 'Warrior3000', GETDATE(), 'Male', 'Warrior', '3000'
 );
+
 GO
 DECLARE @HashedPassword VARBINARY(60);
 SET @HashedPassword = CONVERT(VARBINARY(60), '$2b$10$qmteKMrbxP0f98ViI5Ep6e2GCl1x3wgZap2Ii5yAu/MdlXmraF5Yi');
