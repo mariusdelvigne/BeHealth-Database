@@ -84,14 +84,14 @@ CREATE TABLE ast_users_foods (
     
     ast_calories FLOAT NOT NULL,
     ast_total_fats FLOAT NOT NULL,
-    ast_satured_fats FLOAT NOT NULL,
+    ast_saturated_fats FLOAT NOT NULL,
     ast_cholesterol FLOAT NOT NULL,
     ast_sodium FLOAT NOT NULL,
     ast_total_carbohydrates FLOAT NOT NULL,
     ast_dietary_fiber FLOAT NOT NULL,
     ast_sugars FLOAT NOT NULL,
     ast_proteins FLOAT NOT NULL,
-    ast_potassiums FLOAT NOT NULL,
+    ast_potassium FLOAT NOT NULL,
     
     user_id INT NOT NULL,
     food_id INT NOT NULL,
@@ -169,14 +169,14 @@ CREATE TABLE foods (
     food_serving_weights INT NOT NULL,
     food_calories FLOAT NOT NULL,
     food_total_fats FLOAT NOT NULL,
-    food_satured_fats FLOAT NOT NULL,
+    food_saturated_fats FLOAT NOT NULL,
     food_cholesterol FLOAT NOT NULL,
     food_sodium FLOAT NOT NULL,
     food_total_carbohydrates FLOAT NOT NULL,
     food_dietary_fiber FLOAT NOT NULL,
     food_sugars FLOAT NOT NULL,
     food_proteins FLOAT NOT NULL,
-    food_potassiums FLOAT NOT NULL,
+    food_potassium FLOAT NOT NULL,
     
     creator_id INT,
 
@@ -617,7 +617,7 @@ INSERT INTO sports (sport_name, creator_id) VALUES
 
 -- INSERTION FOODS
 GO
-INSERT INTO foods (food_name, food_serving_weights, food_calories, food_total_fats, food_satured_fats, food_cholesterol, food_sodium, food_total_carbohydrates, food_dietary_fiber, food_sugars, food_proteins, food_potassiums, creator_id) VALUES
+INSERT INTO foods (food_name, food_serving_weights, food_calories, food_total_fats, food_saturated_fats, food_cholesterol, food_sodium, food_total_carbohydrates, food_dietary_fiber, food_sugars, food_proteins, food_potassium, creator_id) VALUES
 ('Apple', 100, 52.20, 0.16, 0.05, 0.00, 1.10, 13.74, 2.42, 10.44, 0.27, 107.14, 1),
 ('Banana', 100, 89.00, 0.25, 0.08, 0.00, 0.85, 22.88, 2.63, 11.86, 1.10, 357.63, 2),
 ('Orange', 100, 47.33, 0.15, 0.00, 0.00, 0.00, 11.45, 2.37, 9.16, 0.92, 180.92, 3),
