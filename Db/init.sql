@@ -218,10 +218,11 @@ CREATE TABLE tags (
 );
 GO
 CREATE TABLE ast_plans_tags (
+    ast_id INT NOT NULL IDENTITY,
     tag_id INT NOT NULL,
     plan_id INT NOT NULL,
 
-    PRIMARY KEY (tag_id, plan_id)
+    PRIMARY KEY (ast_id)
 );
 GO
 CREATE TABLE health_programs (
