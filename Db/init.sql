@@ -82,17 +82,6 @@ CREATE TABLE ast_users_foods (
     ast_datetime DATETIME2 NOT NULL,
     ast_quantity_in_g INT NOT NULL,
     
-    ast_calories FLOAT NOT NULL,
-    ast_total_fats FLOAT NOT NULL,
-    ast_saturated_fats FLOAT NOT NULL,
-    ast_cholesterol FLOAT NOT NULL,
-    ast_sodium FLOAT NOT NULL,
-    ast_total_carbohydrates FLOAT NOT NULL,
-    ast_dietary_fiber FLOAT NOT NULL,
-    ast_sugars FLOAT NOT NULL,
-    ast_proteins FLOAT NOT NULL,
-    ast_potassium FLOAT NOT NULL,
-    
     user_id INT NOT NULL,
     food_id INT NOT NULL,
 
