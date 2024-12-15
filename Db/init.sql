@@ -92,6 +92,7 @@ CREATE TABLE ast_users_sports (
     ast_id INT NOT NULL IDENTITY,
     ast_start_datetime DATETIME2 NOT NULL,
     ast_end_datetime DATETIME2 NOT NULL,
+    ast_calories_burned INT NOT NULL,
     
     user_id INT NOT NULL,
     sport_id INT NOT NULL,
