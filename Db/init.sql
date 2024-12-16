@@ -475,7 +475,7 @@ INSERT INTO user_passwords (password_password, user_id) VALUES (
 --mdp = adminPassword
 GO
 INSERT INTO users (user_role, User_mail, user_username, user_birth_date, user_gender, user_name, user_surname) VALUES (
-    'Admin', 'Marius@mail.com', 'Marius', GETDATE(), 'Male', 'Marius', 'Delvigne'
+    'Admin', 'Marius@mail.com', 'Marius', '2000-2-12', 'Male', 'Marius', 'Delvigne'
 );
 GO
 DECLARE @HashedPassword VARBINARY(60);
@@ -486,7 +486,7 @@ INSERT INTO user_passwords (password_password, user_id) VALUES (
 --mdp = MariusDelvigne
 GO
 INSERT INTO users (user_role, User_mail, user_username, user_birth_date, user_gender, user_name, user_surname) VALUES (
-    'User', 'Matteo@mail.com', 'Matteo', GETDATE(), 'Female', 'Matteo', 'Leroy'
+    'User', 'Matteo@mail.com', 'Matteo', '2004-11-25', 'Female', 'Matteo', 'Leroy'
 );
 GO
 DECLARE @HashedPassword VARBINARY(60);
@@ -497,7 +497,7 @@ INSERT INTO user_passwords (password_password, user_id) VALUES (
 --mdp = MatteoLeroy
 GO
 INSERT INTO users (user_role, User_mail, user_username, user_birth_date, user_gender, user_name, user_surname) VALUES (
-    'User', 'Nathan@mail.com', 'Nathan', GETDATE(), 'Female', 'Nathan', 'Malbecq'
+    'User', 'Nathan@mail.com', 'Nathan', '2004-10-30', 'Female', 'Nathan', 'Malbecq'
 );
 GO
 DECLARE @HashedPassword VARBINARY(60);
@@ -508,7 +508,7 @@ INSERT INTO user_passwords (password_password, user_id) VALUES (
 --mdp = NathanMalbecq
 GO
 INSERT INTO users (user_role, User_mail, user_username, user_birth_date, user_gender, user_name, user_surname) VALUES (
-    'User', 'Robin@mail.com', 'Robin', GETDATE(), 'Other', 'Robin', 'Reynaert'
+    'User', 'Robin@mail.com', 'Robin', '1991-08-19', 'Other', 'Robin', 'Reynaert'
 );
 GO
 DECLARE @HashedPassword VARBINARY(60);
@@ -632,12 +632,12 @@ INSERT INTO ast_users_foods (ast_quantity_in_g, ast_datetime, user_id, food_id) 
 
 -- INSERTION AST_USERS_SPORTS
 GO
-INSERT INTO ast_users_sports (ast_start_datetime, ast_end_datetime, user_id, sport_id) VALUES
-('2024-11-01 12:00:00', '2024-11-01 13:00:00', 1, 1),
-('2024-11-02 18:30:00', '2024-11-02 20:00:00', 2, 4),
-('2024-11-03 07:45:00', '2024-11-03 09:00:00', 3, 3),
-('2024-11-04 14:15:00', '2024-11-04 16:00:00', 4, 6),
-('2024-11-05 20:00:00', '2024-11-05 21:30:00', 5, 5);
+INSERT INTO ast_users_sports (ast_start_datetime, ast_end_datetime, ast_calories_burned, user_id, sport_id) VALUES
+('2024-11-01 12:00:00', '2024-11-01 13:00:00', 100, 1, 1),
+('2024-11-02 18:30:00', '2024-11-02 20:00:00', 101, 2, 4),
+('2024-11-03 07:45:00', '2024-11-03 09:00:00', 102, 3, 3),
+('2024-11-04 14:15:00', '2024-11-04 16:00:00', 103, 4, 6),
+('2024-11-05 20:00:00', '2024-11-05 21:30:00', 104, 5, 5);
 
 -- INSERTION TAGS
 GO
