@@ -28,7 +28,8 @@ CREATE TABLE user_passwords (
 );
 GO
 CREATE TABLE user_preferences (
-    user_id INT NOT NULL,
+    user_id INT NOT NULL, 
+    theme VARCHAR(63) NOT NULL,
 
     PRIMARY KEY (user_id)
 );
