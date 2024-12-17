@@ -521,8 +521,8 @@ INSERT INTO user_passwords (password_password, user_id) VALUES (
 -- INSERTION GLOBAL_MESSAGES
 GO
 INSERT INTO global_messages (message_description, message_start_datetime, message_end_datetime, creator_id) VALUES
-('Test GlobalMessage Warrior3000', '2024-11-23 10:00:00', '2024-11-24 23:59:59', 1),
-('Maintenance scheduled for Saturday, November 30, 2024.', '2024-11-25 08:00:00', '2024-11-30 18:00:00', 2);
+('Test GlobalMessage Warrior3000', '2024-12-15 10:00:00', '2024-12-24 23:59:59', 1),
+('Maintenance scheduled for Saturday, December 17, 2024.', '2024-12-18 08:00:00', '2024-12-30 18:00:00', 2);
 
 -- INSERTION NOTIFICATIONS
 GO
