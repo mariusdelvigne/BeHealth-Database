@@ -464,7 +464,7 @@ END;
 
 GO
 INSERT INTO users (user_role, User_mail, user_username, user_birth_date, user_gender, user_name, user_surname) VALUES (
-    'Admin', 'Warrior3000@mail.com', 'Warrior3000', GETDATE(), 'Male', 'Warrior', '3000'
+    'Admin', 'Warrior3000@mail.com', 'Warrior3000', '1995-10-10', 'Male', 'Warrior', '3000'
 );
 
 GO

@@ -1,0 +1,14 @@
+User: Warrior3000
+password: adminPassword
+
+User: Marius
+password: MariusDelvigne
+
+User: Matteo
+password: MatteoLeroy
+
+User: Nathan
+password: NathanMalbecq
+
+User: Robin
+password: RobinReynaert
